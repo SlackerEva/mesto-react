@@ -27,14 +27,14 @@ function Main(props) {
       
     api.getInitialCards()    
       .then((items)=>{
-        setCards(items.map((item, index) => {
-          return <Card card={item} key={index} onCardClick={props.onCardClick} onCardDeleteClick={props.onCardDeleteClick} />
+        setCards(items.map((item) => {
+          return <Card card={item} key={item._id} onCardClick={props.onCardClick} onCardDeleteClick={props.onCardDeleteClick} />
         }))
       })
       .catch((err)=>{
         console.log(err);
         })  
-  });
+  }, []);
 
   return (
     <main className="content">
