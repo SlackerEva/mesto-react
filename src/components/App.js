@@ -8,7 +8,6 @@ import ImagePopup from './ImagePopup.js';
 import EditProfilePopup from './EditProfilePopup.js';
 import EditAvatarPopup from './EditAvatarPopup.js';
 import AddPlacePopup from './AddPlacePopup.js';
-import Card from './Card';
 import api from '../utils/api';
 import {CurrentUserContext} from '../contexts/CurrentUserContext';
 
@@ -30,10 +29,7 @@ function App() {
   React.useEffect(() => {
     api.getInitialCards()    
       .then((items)=>{
-        setCards(items.map((item) => {
-          return <Card card={item} key={item._id} onCardClick={handleCardClick} 
-          onCardLike={handleCardLike} onCardDelete={handleCardDelete} />
-        }))
+        setCards(items)
       })
       .catch((err)=>{
         console.log(err);
@@ -89,7 +85,7 @@ function App() {
   function handleAddCard(data) {
     api.addCard(data)
       .then((values)=>{
-        setCards([<Card card={values} key={values._id} onCardClick={handleCardClick} onCardLike={handleCardLike} onCardDelete={handleCardDelete} />, ...cards]); 
+        setCards([values, ...cards]); 
         closeAllPopups();
       })
       .catch((err)=>{
@@ -130,7 +126,8 @@ function App() {
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
         <Header />
-        <Main onEditProfile={handleEditProfileClick} onAddPlace={handleAddPlaceClick} onEditAvatar={handleEditAvatarClick} cards={cards} />
+        <Main onEditProfile={handleEditProfileClick} onAddPlace={handleAddPlaceClick} onEditAvatar={handleEditAvatarClick} cards={cards}
+        onCardClick={handleCardClick} onCardLike={handleCardLike} onCardDelete={handleCardDelete} />
         <Footer />
         <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser} />
         <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar} />
