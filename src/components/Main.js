@@ -1,5 +1,6 @@
 import React from 'react';
 import {CurrentUserContext} from '../contexts/CurrentUserContext';
+import Card from './Card';
 
 import edit from '../images/edit.svg';
 import plus from '../images/plus.svg';
@@ -26,7 +27,9 @@ function Main(props) {
       </section>
       <section className="gallery">
         <ul className="cards">
-          {props.cards}
+          {props.cards.map((item) => {
+            return <Card card={item} key={item._id} onCardClick={props.onCardClick} onCardLike={props.onCardLike} onCardDelete={props.onCardDelete} />
+          })}
         </ul>
       </section>
     </main>
