@@ -16,8 +16,8 @@ class Api {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
-        name: data.username,
-        about: data.userjob
+        name: data.name,
+        about: data.about
       })
     })
     .then((res) => {
@@ -39,7 +39,7 @@ class Api {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
-        avatar: link
+        avatar: link.avatar
       })
     })
     .then((res) => {
@@ -78,6 +78,21 @@ class Api {
     .then((res) => {
       return this._getResponseData(res);
     }); 
+  }
+
+  changeLikeCardStatus(id, like) {
+    let methodName = like?"PUT":"DELETE";
+      return fetch(`${this._url}cards/likes/${id}`, {        
+          method: methodName,
+          headers: this._headers        
+      })
+      .then((res) =>      
+        res.ok
+        ? res.json()
+        : Promise.reject(`Error! ${res.statusText}`).catch((err) =>
+            console.log(err)
+          )
+    );
   }
 
   giveLike(id) {
