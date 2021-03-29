@@ -7,7 +7,7 @@ import DeletePopup from './DeletePopup.js';
 import ImagePopup from './ImagePopup.js';
 import EditProfilePopup from './EditProfilePopup.js';
 import EditAvatarPopup from './EditAvatarPopup.js';
-import AddCardPopup from './AddCardPopup.js';
+import AddPlacePopup from './AddPlacePopup.js';
 import Card from './Card';
 import api from '../utils/api';
 import {CurrentUserContext} from '../contexts/CurrentUserContext';
@@ -134,7 +134,7 @@ function App() {
         <Footer />
         <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser} />
         <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar} />
-        <AddCardPopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} onAddCard={handleAddCard} />
+        <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} onAddCard={handleAddCard} />
         <DeletePopup isOpen={isDeleteCardPopupOpen} onClose={closeAllPopups} onDelete={handleCardDelete} />
         <ImagePopup selectedCard={selectedCard} onClose={closeAllPopups} card={card} />
       </div>
