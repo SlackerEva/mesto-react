@@ -28,7 +28,7 @@ function Main(props) {
       <section className="gallery">
         <ul className="cards">
           {props.cards.map((item) => {
-            return <Card card={item} key={item._id} onCardClick={props.onCardClick} onCardLike={props.onCardLike} onCardDelete={props.onCardDelete} />
+            return (<Card card={item} key={item._id} onCardClick={props.onCardClick} onCardLike={props.onCardLike} onCardDelete={props.onCardDelete} />)
           })}
         </ul>
       </section>
