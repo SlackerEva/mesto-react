@@ -3,6 +3,8 @@
   margin: 0 auto;
   padding: 45px 0 41px;
   border-bottom: 1px solid rgba(84, 84, 84, .7);
+  display: flex;
+  justify-content: space-between;
 }
 
 @media (min-width: 425px) and (max-width: 1023px) {
